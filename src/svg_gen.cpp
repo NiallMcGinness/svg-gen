@@ -52,11 +52,12 @@ void genCircle(){
 }
 
 string randomise_star( string input_string){
+    int x = random_origin_generator();
+    int y = random_origin_generator();
     
     //int base_array[10][2] = { {259,105}, {274,135}, {308,140}, {283,162}, {289,194}, {259,179}, {228,194} ,{234,162}, {210,139},  {243,135}};
     vector <vector<int>> v = { {259,105}, {274,135}, {308,140}, {283,162}, {289,194}, {259,179}, {228,194} ,{234,162}, {210,139},  {243,135}};
-    int x = random_origin_generator();
-    int y = random_origin_generator();
+    
     return input_string;
 }
 
