@@ -12,22 +12,25 @@ void test_option(int t);
 int main(){
 
     enum shape_options { circle, star, square, random };
-
+    srand(time(NULL));
     for(int i = 0; i < 20; i++){
-        random_number();
+       random_number();
     }
     /*
-    genCircle();
-    genStar();
-    genSquare();
+    string in ("<circle cx='<x>' cy='<y>' r='64' fill='white' stroke='black' stroke-width='3' />");
+    string t = randomise_origin(in); 
+    cout << t << endl;
     */
+    
+    //genCircle();
+    genStar();
+    //genSquare();
+    
 }
 
 int random_number(){
-
+   
     int r = rand() % 10;
-
-    cout << " random number " << r << endl;
     test_option(r);
     return r;
 }
@@ -39,9 +42,9 @@ void test_option(int t){
 
     switch(t){
 
-        case circle : cout << " circle\n "; break;
+        case circle : genCircle(); break;
         case star : cout << " star\n "; break;
-        case square : cout << " square\n "; break;
+        case square : genSquare();; break;
         case random : cout << " random\n "; break;
         default : cout << " blank\n ";
     }
