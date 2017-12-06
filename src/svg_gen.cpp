@@ -1,14 +1,14 @@
 #include <iostream>
-#include <string>
 #include <vector>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 int random_origin_generator(){
 
    
-    int r = (rand() % 500);
+    int r = rand() % 300;
 
     cout << " random origin" << r << endl;
     return r;
@@ -51,12 +51,38 @@ void genCircle(){
     outputFile.close();
 }
 
-string randomise_star( string input_string){
+string randomise_star(string input_string){
+    
+    // returns a string of x,y coordinates for svg polygon position markup
+    // each value seperated by a comma
+    // each pair of values spearated by a space  
     int x = random_origin_generator();
     int y = random_origin_generator();
+
+    // get random number and use this to pick the sign 
+    // we want positive and negative numbers to move our position around 
+    // as we are subtracting from a base string that is centerish
     
-    //int base_array[10][2] = { {259,105}, {274,135}, {308,140}, {283,162}, {289,194}, {259,179}, {228,194} ,{234,162}, {210,139},  {243,135}};
-    vector <vector<int>> v = { {259,105}, {274,135}, {308,140}, {283,162}, {289,194}, {259,179}, {228,194} ,{234,162}, {210,139},  {243,135}};
+    if ( (rand() % 2)  == 0 ) x = x * -1;
+    if ( (rand() % 2)  == 0) y = y * -1;
+
+    string coordinate_string("");
+    string space(" ");
+    string comma(",");
+    
+    vector <vector<int>> base_vector = { {259,105}, {274,135}, {308,140}, {283,162}, {289,194}, {259,179}, {228,194} ,{234,162}, {210,139},  {243,135}};
+    
+    for (int i = 0; i < base_vector.size(); i++)
+    {
+        coordinate_string += space + to_string(base_vector[i][0] + x) + comma + to_string(base_vector[i][1] + y) + space;
+    }
+
+    string p_placeholder("<p>");
+
+    size_t p_start_pos = input_string.find(p_placeholder);
+
+    input_string.erase( p_start_pos, p_placeholder.length() );
+    input_string.insert(p_start_pos, coordinate_string);
     
     return input_string;
 }
@@ -66,10 +92,11 @@ void genStar(){
     outputFile.open("output/star.svg");
 
     string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
-    string star ("<polygon fill='white' stroke='black'  stroke-width='3'  points='259,105 274,135 308,140 283,162 289,194 259,179 228,194 234,162 210,139 243,135 '/>");
+    //string star ("<polygon fill='white' stroke='black'  stroke-width='3'  points=' 259,105 274,135 308,140 283,162 289,194 259,179 228,194 234,162 210,139 243,135 '/>");
+    string star ("<polygon fill='white' stroke='black'  stroke-width='3'  points=' <p> '/>");
     string svg_escape ("</svg>");
     string s = randomise_star(star);
-    string all = svg_header + star + svg_escape;
+    string all = svg_header + s + svg_escape;
     outputFile << all;
     outputFile.close();
 }
