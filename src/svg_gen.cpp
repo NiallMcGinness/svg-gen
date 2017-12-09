@@ -7,10 +7,8 @@ using namespace std;
 
 int random_origin_generator(){
 
-   
     int r = rand() % 300;
-
-    cout << " random origin" << r << endl;
+    
     return r;
 }
 
@@ -21,7 +19,7 @@ string randomise_origin( string input_string){
     
     int x = random_origin_generator();
     int y = random_origin_generator();
-    cout << x << "  -  " << y  << endl;
+    
     
     string x_value = to_string(x);
     string y_value = to_string(y);
@@ -35,17 +33,24 @@ string randomise_origin( string input_string){
     return input_string;
 }
 
+string createFilepath( string id_string){
+
+    string filePath = "output/train/" + id_string;
+    return filePath;
+}
 
 
-void genCircle(){
+void genCircle( string id_string ){
+
+    string filePath = createFilepath(id_string);
     ofstream outputFile;
-    outputFile.open("output/circle.svg");
+    outputFile.open(filePath);
 
     string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
     string circle_template ("<circle cx='<x>' cy='<y>' r='64' fill='white' stroke='black' stroke-width='3' />");
     string circle = randomise_origin(circle_template);
     string svg_escape ("</svg>");
-    cout<< svg_header + circle << endl;
+    
     string all = svg_header + circle + svg_escape;
     outputFile << all;
     outputFile.close();
@@ -61,10 +66,10 @@ string randomise_star(string input_string){
 
     // get random number and use this to pick the sign 
     // we want positive and negative numbers to move our position around 
-    // as we are subtracting from a base string that is centerish
+    // as we are modifying a base string that is centerish
     
     if ( (rand() % 2)  == 0 ) x = x * -1;
-    if ( (rand() % 2)  == 0) y = y * -1;
+    if ( (rand() % 2)  == 0 ) y = y * -1;
 
     string coordinate_string("");
     string space(" ");
@@ -82,17 +87,18 @@ string randomise_star(string input_string){
     size_t p_start_pos = input_string.find(p_placeholder);
 
     input_string.erase( p_start_pos, p_placeholder.length() );
-    input_string.insert(p_start_pos, coordinate_string);
+    input_string.insert( p_start_pos, coordinate_string );
     
     return input_string;
 }
 
-void genStar(){
+void genStar( string id_string){
+
+    string filePath = createFilepath(id_string);
     ofstream outputFile;
-    outputFile.open("output/star.svg");
+    outputFile.open(filePath);
 
     string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
-    //string star ("<polygon fill='white' stroke='black'  stroke-width='3'  points=' 259,105 274,135 308,140 283,162 289,194 259,179 228,194 234,162 210,139 243,135 '/>");
     string star ("<polygon fill='white' stroke='black'  stroke-width='3'  points=' <p> '/>");
     string svg_escape ("</svg>");
     string s = randomise_star(star);
@@ -101,9 +107,11 @@ void genStar(){
     outputFile.close();
 }
 
-void genSquare(){
+void genSquare( string id_string){
+
+    string filePath = createFilepath(id_string);
     ofstream outputFile;
-    outputFile.open("output/square.svg");
+    outputFile.open(filePath);
 
     string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
     string square_template ("<rect x='<x>' y='<y>' width='64' height='64' fill='white' stroke='black' stroke-width='3'/>");
@@ -116,9 +124,11 @@ void genSquare(){
 }
 
 
-void genBlank(){
+void genBlank( string id_string){
+
+    string filePath = createFilepath(id_string);
     ofstream outputFile;
-    outputFile.open("output/blank.svg");
+    outputFile.open(filePath);
 
     string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
     

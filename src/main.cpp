@@ -6,46 +6,63 @@
 
 using namespace std;
 
-int random_number();
-void test_option(int t);
+string generate_entry(string id_string);
+string select_option(int t, string id_string);
 
 int main(){
-
-    enum shape_options { circle, star, square, random };
+    // generate id
+    // pick shape at random
+    // add id and shape to csv file
+    // generate svg for shape selected
+    string csv("ID,SHAPE_TYPE");
+    string comma(",");
+    string id("");
+    string shape_type("");
     srand(time(NULL));
     for(int i = 0; i < 20; i++){
-       random_number();
+       id = to_string(i);
+       shape_type = generate_entry(id);
+       csv += comma + id + comma + shape_type;
     }
-    /*
-    string in ("<circle cx='<x>' cy='<y>' r='64' fill='white' stroke='black' stroke-width='3' />");
-    string t = randomise_origin(in); 
-    cout << t << endl;
-    */
-    
-    //genCircle();
-    genStar();
-    //genSquare();
-    
+  
+    cout << csv;
 }
 
-int random_number(){
+string  generate_entry(string id_string){
    
-    int r = rand() % 10;
-    test_option(r);
-    return r;
+    int r = rand() % 5;
+   
+    string shape_type = select_option(r, id_string);
+    
+    return shape_type;
 }
 
-void test_option(int t){
-    enum shape_options { circle, star, square, random };
-
+string select_option(int t,  string id_string){
+    enum shape_options { circle, star, square };
+    id_string += ".svg";
     t = shape_options(t);
-
+    string shape_type("blank");
     switch(t){
 
-        case circle : genCircle(); break;
-        case star : cout << " star\n "; break;
-        case square : genSquare();; break;
-        case random : cout << " random\n "; break;
-        default : cout << " blank\n ";
+        case circle : {
+                genCircle(id_string);
+                shape_type = "circle";
+            }
+            break;
+        case star : {
+                genStar(id_string);
+                shape_type = "star";
+            } 
+            break;
+        case square : {
+                genSquare(id_string);
+                shape_type = "square";
+            }
+            break;
+        default : { 
+                genBlank(id_string);
+            }
     }
+
+    return shape_type;
 }
