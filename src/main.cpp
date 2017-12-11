@@ -17,13 +17,18 @@ int main(){
     int number_of_items = 200;
     string csv("ID,SHAPE_TYPE");
     string comma(",");
+    string carriage_return("\r");
     string id("");
     string shape_type("");
+
+    csv += carriage_return;
+
     srand(time(NULL));
+    
     for(int i = 0; i < number_of_items; i++){
        id = to_string(i);
        shape_type = generate_entry(id);
-       csv += comma + id + comma + shape_type;
+       csv += id + comma + shape_type + carriage_return;
     }
   
     ofstream csv_file;

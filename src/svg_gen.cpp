@@ -35,7 +35,7 @@ string randomise_origin( string input_string){
 
 string createFilepath( string id_string){
 
-    string filePath = "output/train/" + id_string;
+    string filePath = "output/train/svg/" + id_string;
     return filePath;
 }
 
