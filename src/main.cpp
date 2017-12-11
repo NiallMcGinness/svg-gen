@@ -14,18 +14,23 @@ int main(){
     // pick shape at random
     // add id and shape to csv file
     // generate svg for shape selected
+    int number_of_items = 200;
     string csv("ID,SHAPE_TYPE");
     string comma(",");
     string id("");
     string shape_type("");
     srand(time(NULL));
-    for(int i = 0; i < 20; i++){
+    for(int i = 0; i < number_of_items; i++){
        id = to_string(i);
        shape_type = generate_entry(id);
        csv += comma + id + comma + shape_type;
     }
   
-    cout << csv;
+    ofstream csv_file;
+    csv_file.open("output/labels/train.csv");
+    //cout << csv;
+    csv_file << csv;
+    csv_file.close();
 }
 
 string  generate_entry(string id_string){

@@ -46,7 +46,7 @@ void genCircle( string id_string ){
     ofstream outputFile;
     outputFile.open(filePath);
 
-    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
+    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'> <rect width='100%' height='100%' fill='white'/>");
     string circle_template ("<circle cx='<x>' cy='<y>' r='64' fill='white' stroke='black' stroke-width='3' />");
     string circle = randomise_origin(circle_template);
     string svg_escape ("</svg>");
@@ -98,7 +98,7 @@ void genStar( string id_string){
     ofstream outputFile;
     outputFile.open(filePath);
 
-    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
+    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>  <rect width='100%' height='100%' fill='white'/>");
     string star ("<polygon fill='white' stroke='black'  stroke-width='3'  points=' <p> '/>");
     string svg_escape ("</svg>");
     string s = randomise_star(star);
@@ -113,7 +113,7 @@ void genSquare( string id_string){
     ofstream outputFile;
     outputFile.open(filePath);
 
-    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
+    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>  <rect width='100%' height='100%' fill='white'/>");
     string square_template ("<rect x='<x>' y='<y>' width='64' height='64' fill='white' stroke='black' stroke-width='3'/>");
     string square = randomise_origin(square_template);
     string svg_escape ("</svg>");
@@ -130,7 +130,7 @@ void genBlank( string id_string){
     ofstream outputFile;
     outputFile.open(filePath);
 
-    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'>");
+    string svg_header ("<svg width='512' height='512' viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'> <rect width='100%' height='100%' fill='white'/>");
     
     string svg_escape ("</svg>");
     
