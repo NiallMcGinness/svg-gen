@@ -1,5 +1,11 @@
+# doin't upload data
+*.png
+*.svg
+
+
 # Prerequisites
 *.d
+
 
 # Compiled Object files
 *.slo
