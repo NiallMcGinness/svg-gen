@@ -7,8 +7,9 @@ using namespace std;
 
 int random_origin_generator(){
 
-    int r = ( rand() % 200 ) + 60;
-    
+    //int r = ( rand() % 200 ) + 60;
+    //
+    int r = 100; 
     return r;
 }
 
@@ -70,6 +71,10 @@ string randomise_star(string input_string){
     
     if ( (rand() % 2)  == 0 ) x = x * -1;
     if ( (rand() % 2)  == 0 ) y = y * -1;
+
+    // disable randomness 
+    x = 0;
+    y = 0;
 
     string coordinate_string("");
     string space(" ");

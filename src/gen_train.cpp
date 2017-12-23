@@ -15,7 +15,7 @@ int main(){
     // pick shape at random
     // add id and shape to csv file
     // generate svg for shape selected
-    int number_of_items = 2000;
+    int number_of_items = 10000;
     string csv("ID,SHAPE_TYPE");
     string comma(",");
     string carriage_return("\r");
@@ -23,7 +23,10 @@ int main(){
     string shape_type("");
 
     csv += carriage_return;
-
+    // seeding rand with time as well as getpid
+    // this file might be run soon after other files
+    // leaving the seed with the same value ( run within the same second ) and
+    // thus not producing differeing values  
     srand((unsigned) time(NULL) * getpid() );
     
     for(int i = 0; i < number_of_items; i++){
@@ -34,7 +37,6 @@ int main(){
   
     ofstream csv_file;
     csv_file.open("output/labels/train.csv");
-    //cout << csv;
     csv_file << csv;
     csv_file.close();
 }

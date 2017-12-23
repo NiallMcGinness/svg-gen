@@ -5,9 +5,7 @@ import time
 print("compling test and train svg generators")
 
 os.system("clang++ --std=c++11 src/gen_train.cpp -o train")
-# temporary hack , sleep for 1 second to make srand(time(null)) call different 
-# one day I might refactor the cpp
-#time.sleep(2)
+
 
 os.system("clang++ --std=c++11 src/gen_test.cpp -o test")
 

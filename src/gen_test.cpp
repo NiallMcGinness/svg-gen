@@ -23,6 +23,10 @@ int main(){
     string shape_type("");
 
     csv += carriage_return;
+     // seeding rand with time as well as getpid
+    // this file might be run soon after other files
+    // leaving the seed with the same value and
+    // thus not producing differeing values  
 
     srand((unsigned) time(NULL) * getpid() );
     
