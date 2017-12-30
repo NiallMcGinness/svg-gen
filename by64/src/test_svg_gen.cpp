@@ -7,9 +7,7 @@ using namespace std;
 
 int random_origin_generator(){
 
-    //int r = ( rand() % 200 ) + 60;
-    //
-    int r = 30; 
+    int r = ( rand() % 45 ) + 5; 
     return r;
 }
 
@@ -48,7 +46,7 @@ void genCircle( string id_string ){
     outputFile.open(filePath);
 
     string svg_header ("<svg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'> <rect width='100%' height='100%' fill='white'/>");
-    string circle_template ("<circle cx='<x>' cy='<y>' r='16' fill='white' stroke='black' stroke-width='3' />");
+    string circle_template ("<circle cx='<x>' cy='<y>' r='8' fill='white' stroke='black' stroke-width='3' />");
     string circle = randomise_origin(circle_template);
     string svg_escape ("</svg>");
     
@@ -62,8 +60,8 @@ string randomise_star(string input_string){
     // returns a string of x,y coordinates for svg polygon position markup
     // each value seperated by a comma
     // each pair of values spearated by a space  
-    int x = rand() % 100;
-    int y = rand() % 100;
+    int x = rand() % 25;
+    int y = rand() % 25;
 
     // get random number and use this to pick the sign 
     // we want positive and negative numbers to move our position around 
@@ -71,10 +69,6 @@ string randomise_star(string input_string){
     
     if ( (rand() % 2)  == 0 ) x = x * -1;
     if ( (rand() % 2)  == 0 ) y = y * -1;
-
-    // disable randomness 
-    x = 0;
-    y = 0;
 
     string coordinate_string("");
     string space(" ");

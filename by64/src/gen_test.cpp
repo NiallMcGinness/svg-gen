@@ -15,7 +15,7 @@ int main(){
     // pick shape at random
     // add id and shape to csv file
     // generate svg for shape selected
-    int number_of_items = 200;
+    int number_of_items = 10000;
     string csv("ID,SHAPE_TYPE");
     string comma(",");
     string carriage_return("\r");
