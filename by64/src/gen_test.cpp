@@ -23,7 +23,7 @@ int main(){
     string shape_type("");
 
     csv += carriage_return;
-     // seeding rand with time as well as getpid
+    // seeding rand with time as well as getpid
     // this file might be run soon after other files
     // leaving the seed with the same value and
     // thus not producing differeing values  
@@ -59,22 +59,22 @@ string select_option(int t,  string id_string){
     switch(t){
 
         case circle : {
-                genCircle(id_string);
+                
                 shape_type = "circle";
             }
             break;
         case star : {
-                genStar(id_string);
+               
                 shape_type = "star";
             } 
             break;
         case square : {
-                genSquare(id_string);
+               
                 shape_type = "square";
             }
             break;
         default : { 
-                genBlank(id_string);
+               shape_type = "blank";
             }
     }
 
