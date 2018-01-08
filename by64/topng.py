@@ -26,17 +26,20 @@ def svg_to_png(src_dir,dest_dir,file_name):
 #svg_to_png(dir_path, output_dir_path, files[0])
 #print(eg)
 
+cwd = os.getcwd()
 
-train_src_dir_path = '/home/nm/proj/gh/svg-gen/by64/output/train/svg/'
-train_dest_dir_path = '/home/nm/proj/gh/svg-gen/by64/output/train/png/'
+print(cwd)
 
-train_files = os.listdir('/home/nm/proj/gh/svg-gen/by64/output/train/svg/')
+train_src_dir_path = cwd + '/output/train/svg/'
+train_dest_dir_path = cwd + '/output/train/png/'
+
+train_files = os.listdir(cwd + '/output/train/svg/')
 
 [svg_to_png(train_src_dir_path, train_dest_dir_path, file_name) for file_name in train_files ]
 
-test_src_dir_path = '/home/nm/proj/gh/svg-gen/by64/output/test/svg/'
-test_dest_dir_path = '/home/nm/proj/gh/svg-gen/by64/output/test/png/'
-test_files = os.listdir('/home/nm/proj/gh/svg-gen/by64/output/test/svg/')
+test_src_dir_path = cwd + '/output/test/svg/'
+test_dest_dir_path = cwd + '/output/test/png/'
+test_files = os.listdir( cwd + '/output/test/svg/')
 
 
 [svg_to_png(test_src_dir_path, test_dest_dir_path, file_name) for file_name in test_files ]

@@ -1,6 +1,6 @@
 #include <string>
 #include <random>
-#include <iostream>
+
 #ifndef PEOPLE_H_INCLUDED
 #define PEOPLE_H_INCLUDED
 
@@ -12,7 +12,7 @@ class GenerateLabels{
    // using std::string;
 
     private:
-        string csv_string, comma, carriage_return;
+        string csv, comma, carriage_return;
     public:
         GenerateLabels();
         string getExamples(int number_of_examples);

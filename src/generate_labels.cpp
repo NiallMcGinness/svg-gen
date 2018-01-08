@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <chrono>
 #include <iostream>
 #include "generate_labels.h"
 
@@ -10,32 +11,46 @@ using namespace std;
 GenerateLabels::GenerateLabels()
 {
 
-    this->csv_string += string("ID,SHAPE_TYPE\r");
-    this->comma = string(",");
-    this->carriage_return = string("\r");
+    this->csv = "ID,SHAPE_TYPE\n";
+  
 }
 
 string GenerateLabels::getExamples(int number_of_examples)
 {
     
-    //uniform_int_distribution<> group = uniform_int_distribution<>(0,3);
     int shape_type;
-    string id, shape_selected;
+   
+    string comma(",");
+    string new_line("\n");
+    
+    string id("");
+    string shape_selected("");
+    string next_line;
+    
     for (int i=0; i < number_of_examples; ++i) {
+        
         shape_type = this->get_random_shape_value();
-        // cout <<  shape_type << endl;
+        cout <<  shape_type << endl;
         shape_selected = this->select_shape(shape_type);
         id = to_string(i);
-        //this->csv_string += ( id + comma + shape_selected + carriage_return ) ;
-    }
+       
+        this->csv += id + comma + shape_selected + new_line;
+       
+        cout <<  this->csv << endl;
+        
+         
+    } 
 
-    return this->csv_string;
+    
+
+    return this->csv;
 }
 
 int GenerateLabels::get_random_shape_value()
 {
-    random_device rd;
-    mt19937 gen(rd());
+    //random_device rd;
+    auto seed = chrono::high_resolution_clock::now().time_since_epoch().count();
+    mt19937 gen(seed);
     uniform_int_distribution<> dist = uniform_int_distribution<>(0,3);
 
     int random_value = dist(gen);
@@ -49,7 +64,7 @@ string GenerateLabels::select_shape(int t)
    
     t = shape_options(t);
     
-    string shape_type;
+    string shape_type("");
     
     switch(t){
 

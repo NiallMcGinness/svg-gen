@@ -4,31 +4,23 @@
 
 using namespace std;
 
-//random_device rd;
-//mt19937 gen(rd());
-
-struct group_s {
-   int k;
-   uniform_int_distribution<> dis;
-} group;
 
 
 int main()
 {  
-   /* group.dis = uniform_int_distribution<>(0,4);
-    
-    for (int i=0; i<100; ++i) {
-        cout << group.dis(gen) << ' ' << endl;
-    }
-
-    */
+   
 
     GenerateLabels labels;
+    GenerateLabels labels2;
 
-    int number_of_examples = 50;
+    int number_of_examples = 20;
 
     string csv = labels.getExamples(number_of_examples);
 
     cout <<  csv << endl;
+
+    string csv2 = labels2.getExamples(number_of_examples);
+
+     cout <<  csv2 << endl;
 
 }
