@@ -60,6 +60,7 @@ string GenerateLabels::select_shape(int t) {
 
     shape_type = "circle";
   } break;
+
   case star: {
 
     shape_type = "star";
@@ -69,6 +70,7 @@ string GenerateLabels::select_shape(int t) {
 
     shape_type = "square";
   } break;
+
   default: { shape_type = "blank"; }
   }
 
