@@ -1,0 +1,36 @@
+#include <random>
+#include <iostream>
+
+class RandomCharSource
+{
+public:
+    explicit RandomCharSource() : _re{_rd()}, _dist{0, 255} {};
+    inline char get_next_char() { return _dist(_re); };
+private:
+    std::random_device _rd;
+    std::mt19937 _re;
+    std::uniform_int_distribution<int> _dist;
+    
+};
+
+void foo()
+{
+    RandomCharSource s;
+    std::cout << s.get_next_char() << std::endl;
+}
+
+void bar()
+{
+    std::random_device _rd;
+    std::mt19937 _re{_rd()};
+    std::uniform_int_distribution<int> _dist{0,255};
+    std::cout << (char)_dist(_re) << std::endl;
+}
+
+int main()
+{
+    bar(); // Works OK
+    foo(); // Segfault
+
+    return 0;
+}
