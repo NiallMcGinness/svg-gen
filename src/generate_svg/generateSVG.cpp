@@ -9,6 +9,7 @@ GenerateSVG::GenerateSVG() { this->outputDirectory = "output/train/svg/"; }
 
 void GenerateSVG::setOutputDirectory(string output_directory) {
 
+  srand((unsigned)time(NULL) * getpid());
   this->outputDirectory = output_directory;
 }
 
