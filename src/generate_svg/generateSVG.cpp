@@ -1,11 +1,15 @@
 
 #include "generateSVG.h"
 #include <iostream>
+#include <fstream>
 #include <random>
 #include <string>
 #include <unistd.h>
+#include <vector>
 
-GenerateSVG::GenerateSVG() { this->outputDirectory = "output/train/svg/"; }
+
+
+GenerateSVG::GenerateSVG() { this->outputDirectory = "output/"; }
 
 void GenerateSVG::setOutputDirectory(string output_directory) {
 
@@ -31,7 +35,7 @@ void GenerateSVG::genCircle(string id_string) {
   outputFile.close();
 }
 
-void GenerateSVG::genStar(string) {
+void GenerateSVG::genStar(string id_string) {
   string filePath = createFilepath(id_string);
   ofstream outputFile;
   outputFile.open(filePath);
@@ -48,7 +52,7 @@ void GenerateSVG::genStar(string) {
   outputFile.close();
 }
 
-void GenerateSVG::genSquare(string) {
+void GenerateSVG::genSquare(string id_string) {
   string filePath = createFilepath(id_string);
   ofstream outputFile;
   outputFile.open(filePath);
@@ -66,7 +70,7 @@ void GenerateSVG::genSquare(string) {
   outputFile.close();
 }
 
-void GenerateSVG::genBlank(string) {
+void GenerateSVG::genBlank(string id_string) {
   string filePath = createFilepath(id_string);
   ofstream outputFile;
   outputFile.open(filePath);
@@ -82,13 +86,13 @@ void GenerateSVG::genBlank(string) {
   outputFile.close();
 }
 
-int random_origin_generator() {
+int GenerateSVG::random_origin_generator() {
 
   int r = (rand() % 45) + 5;
   return r;
 }
 
-string randomise_origin(string) {
+string GenerateSVG::randomise_origin(string input_string) {
   // for rect and circle svg mark up ,  set ran x and y coordinates
   string x_placeholder("<x>");
   string y_placeholder("<y>");
@@ -108,12 +112,12 @@ string randomise_origin(string) {
   return input_string;
 }
 
-string createFilepath(string id_string) {
+string GenerateSVG::createFilepath(string id_string) {
   string filePath = this->outputDirectory + id_string;
   return filePath;
 }
 
-string randomise_star(string) {
+string GenerateSVG::randomise_star(string input_string) {
   // returns a string of x,y coordinates for svg polygon position markup
   // each value seperated by a comma
   // each pair of values spearated by a space

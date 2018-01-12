@@ -1,5 +1,6 @@
 #include <random>
 #include <string>
+#include <iostream>
 
 #ifndef GENERATESVG_H_INCLUDED
 #define GENERATESVG_H_INCLUDED
