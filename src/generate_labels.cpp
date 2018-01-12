@@ -1,5 +1,4 @@
-#include <random>
-#include <iostream>
+
 #include <string>
 #include <random>
 #include <chrono>
@@ -7,18 +6,23 @@
 #include "generate_labels.h"
 
 using namespace std;
-
+/*
 GenerateLabels::GenerateLabels()
 {
-
-    this->csv = "ID,SHAPE_TYPE\n";
-  
-}
+    
+    
+    mt{ rd(); };
+    distribution{0, 255};
+    
+} 
+*/
 
 string GenerateLabels::getExamples(int number_of_examples)
 {
     
     int shape_type;
+
+    this->csv = "ID,SHAPE_TYPE\n";
    
     string comma(",");
     string new_line("\n");
@@ -30,13 +34,13 @@ string GenerateLabels::getExamples(int number_of_examples)
     for (int i=0; i < number_of_examples; ++i) {
         
         shape_type = this->get_random_shape_value();
-        cout <<  shape_type << endl;
+        //cout <<  shape_type << endl;
         shape_selected = this->select_shape(shape_type);
         id = to_string(i);
        
         this->csv += id + comma + shape_selected + new_line;
        
-        cout <<  this->csv << endl;
+        //cout <<  this->csv << endl;
         
          
     } 

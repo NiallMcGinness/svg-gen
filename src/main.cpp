@@ -19,8 +19,11 @@ int main()
 
     cout <<  csv << endl;
 
-    string csv2 = labels2.getExamples(number_of_examples);
+    //string csv2 = labels2.getExamples(number_of_examples);
+    string csv11 = labels.getExamples(number_of_examples);
+    cout << " calling same instance a second time " << csv11 << endl;
 
-     cout <<  csv2 << endl;
+    string csv2 = labels2.getExamples(number_of_examples);
+    cout << " calling a second new instance the first time " << csv2 << endl;
 
 }
