@@ -1,8 +1,8 @@
 #include <random>
 #include <string>
 
-#ifndef PEOPLE_H_INCLUDED
-#define PEOPLE_H_INCLUDED
+#ifndef GENERATE_LABELS_H_INCLUDED
+#define GENERATE_LABELS_H_INCLUDED
 
 using namespace std;
 

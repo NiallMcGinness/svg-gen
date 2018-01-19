@@ -9,7 +9,10 @@
 
 
 
-GenerateSVG::GenerateSVG() { this->outputDirectory = "output/"; }
+GenerateSVG::GenerateSVG() { 
+  this->outputDirectory = "output/"; 
+  this->randomScaleSet = true;
+  }
 
 void GenerateSVG::setOutputDirectory(string output_directory) {
 
@@ -136,14 +139,23 @@ string GenerateSVG::randomise_star(string input_string) {
   string coordinate_string("");
   string space(" ");
   string comma(",");
+  
+  vector<vector<float>> base_vector = {{35,7}, {37,16}, {46,16}, {39,21},
+                                     {42,30}, {35,25}, {27,30}, {30,21 },
+                                     {23,16}, {32,16}};
 
-  vector<vector<int>> base_vector = {{40, 15}, {40, 20}, {50, 22}, {40, 25},
-                                     {47, 35}, {40, 30}, {30, 35}, {32, 25},
-                                     {27, 22}, {35, 20}};
+  float scaling_factor = 1.0;
+  float fr;
+  if (this->randomScaleSet == true) 
+  {
+        scaling_factor = ( (float)rand()/RAND_MAX ) + 1.0 ;
+        printf("%f\n",scaling_factor);
+  }
 
-  for (int i = 0; i < base_vector.size(); i++) {
-    coordinate_string += space + to_string(base_vector[i][0] + x) + comma +
-                         to_string(base_vector[i][1] + y) + space;
+  for (double i = 0; i < base_vector.size(); i++) 
+  {
+    coordinate_string += space + to_string(( base_vector[i][0] + x ) * scaling_factor ) + comma +
+                         to_string( ( base_vector[i][1] + y ) * scaling_factor ) + space;
   }
 
   string p_placeholder("<p>");
@@ -155,3 +167,4 @@ string GenerateSVG::randomise_star(string input_string) {
 
   return input_string;
 }
+

@@ -11,6 +11,8 @@ class GenerateSVG {
 
 public:
   GenerateSVG();
+  //explicit GenerateRandomScales() : mt{rd()}, distribution{1, 2} {};
+  bool randomiseScale(bool);
   void setOutputDirectory(string);
   void genCircle(string);
   void genStar(string);
@@ -22,6 +24,8 @@ private:
   string randomise_origin(string);
   string createFilepath(string);
   string outputDirectory;
+  bool randomScaleSet;
+ 
 
   string randomise_star(string);
 };

@@ -2,30 +2,50 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <fstream>
 #include "generate_labels/generate_labels.h"
 #include "generate_svg/generateSVG.h"
 
 using namespace std;
 
-void parse_svg_string(string csv);
+void build_svg(string csv, string output_directory);
 void select_shape_to_generate(string shape_type, string file_name, GenerateSVG svg_obj);
 
 
 int main()
 {  
-   
+    
+    string output_dir("output/");
+    string test_dir = output_dir + "test/svg/";
+    string train_dir = output_dir + "train/svg/";
+    string test_label_filepath = output_dir + "labels/test.csv";
+    string train_label_filepath = output_dir + "labels/train.csv";
 
     GenerateLabels labels;
-   // GenerateLabels labels2;
 
-    int number_of_examples = 100;
+    int number_of_test_examples = 1000;
+    string test_csv = labels.getExamples(number_of_test_examples);
+    build_svg(test_csv, test_dir);
 
-    string test_csv = labels.getExamples(number_of_examples);
-    parse_svg_string(test_csv);
+    int number_of_train_examples = 6000;
+    string train_csv = labels.getExamples(number_of_train_examples);
+    build_svg(train_csv, train_dir);
+
+    ofstream test_label_outputfile;
+    test_label_outputfile.open(test_label_filepath);
+    test_label_outputfile << test_csv;
+    test_label_outputfile.close();
+
+
+    ofstream train_label_outputfile;
+    train_label_outputfile.open(train_label_filepath);
+    train_label_outputfile << train_csv;
+    train_label_outputfile.close();
+
 
 }
 
-void parse_svg_string(string csv)
+void build_svg(string csv, string output_directory)
 {
     string row;
     stringstream stream(csv);
@@ -38,6 +58,9 @@ void parse_svg_string(string csv)
     }
    
     GenerateSVG svg_obj;
+    //
+    svg_obj.setOutputDirectory(output_directory);
+
     string id_number, file_name, shape_type;
     for(std::vector<string>::iterator it = vector_of_rows.begin() + 1; it != vector_of_rows.end(); ++it) 
     {
@@ -54,7 +77,6 @@ void parse_svg_string(string csv)
 
 
 }
-
 void select_shape_to_generate(string shape_type, string file_name, GenerateSVG svg_obj)
 {
     if ( shape_type == "circle" )
